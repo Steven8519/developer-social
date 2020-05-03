@@ -3,7 +3,7 @@ node {
         git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/Steven8519/developer.git', branch: 'master'
     }
     stage("Maven Build"){
-      sh "./gradle clean install"
+      sh "./gradlew clean install"
 
     }
     stage('Build Docker Image'){
