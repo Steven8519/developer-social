@@ -13,7 +13,7 @@ spec:
         app: developer-social
     spec:
       containers:
-        - name: developer-social
+        - name: devhub
           image: steven8519/developer-social
           imagePullPolicy: IfNotPresent
           env:
@@ -25,14 +25,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: devhub
-spec:
-  # This defines which pods are going to be represented by this Service
-  # The service becomes a network endpoint for either other services
-  # or maybe external users to connect to (eg browser)
-  selector:
+  name: developer-social
+  labels:
     app: developer-social
+spec:
   ports:
     - name: http
       port: 8001
-  type: ClusterIP
+  selector:
+    app: developer-social
