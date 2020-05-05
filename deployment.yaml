@@ -1,42 +1,36 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: dev-social
-  labels:
-    app: dev-social
-spec:
-  ports:
-    - name: http
-      port: 8001
-  selector:
-    app: dev-social
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dev-social
+  name: developer-social
 spec:
   selector:
     matchLabels:
-      app: dev-social
+      app: developer-social
   replicas: 1
   template: # template for the pods
     metadata:
       labels:
-        app: dev-social
+        app: developer-social
     spec:
       containers:
-        - name: dev-social
+        - name: developer-social
           image: steven8519/developer-social
-          imagePullPolicy: Always
           env:
-            - name: MONGODB_HOST
-              value: mongodb
-          ports:
-            - containerPort: 8001
-            livenessProbe:
-              httpGet:
-                path: /
-                port: 8001
-              initialDelaySeconds: 5
-              periodSeconds: 5
+            - name: SPRING_PROFILES_ACTIVE
+              value: production-microservice
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: devhub
+spec:
+  # This defines which pods are going to be represented by this Service
+  # The service becomes a network endpoint for either other services
+  # or maybe external users to connect to (eg browser)
+  selector:
+    app: developer-social
+  ports:
+    - name: http
+      port: 8001
+  type: ClusterIP
