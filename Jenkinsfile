@@ -1,9 +1,9 @@
 node {
     stage('SCM Checkout'){
-        git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/Steven8519/developer.git', branch: 'master'
+        git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/Steven8519/developer-social.git', branch: 'master'
     }
     stage("Gradle Build"){
-      sh 'gradlew clean build'
+      sh './gradlew clean build'
 
     }
     stage('Build Docker Image'){
