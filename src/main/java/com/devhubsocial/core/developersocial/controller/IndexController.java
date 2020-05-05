@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/")
 public class IndexController {
+
     @GetMapping
     @ResponseBody
     public String welcome() {
