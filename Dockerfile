@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:12.0.2
 ENV APP_FILE developer-social-0.0.1-SNAPSHOT.jar
 ENV APP_HOME /usr/app
 EXPOSE 8001
