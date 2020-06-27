@@ -3,7 +3,7 @@ kind: ReplicationController
 metadata:
   labels:
     name: developer-social
-  name: spring-controller
+  name: developer-social
 spec:
   replicas: 1
   template:
