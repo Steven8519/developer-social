@@ -13,25 +13,25 @@ spec:
     spec:
       containers:
         - image: steven8519/developer-social
-          name: springboot
+          name: developer-social
           ports:
-            - name: springboot
-              containerPort: 8080
+            - name: developer-social
+              containerPort: 8001
 ---
 # Node Port Service
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: springboot
-  name: springboot
+    name: developer-social
+  name: developer-social
 spec:
   type: NodePort
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8001
+      targetPort: 8001
   selector:
-    name: springboot
+    name: developer-social
 ---
 # Mongo host path rc
 apiVersion: v1
