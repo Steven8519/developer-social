@@ -3,35 +3,35 @@ kind: ReplicationController
 metadata:
   labels:
     name: developer-social
-  name: developer-social
+  name: spring-controller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: developer-social
+        name: springboot
     spec:
       containers:
         - image: steven8519/developer-social
-          name: developer-social
+          name: springboot
           ports:
-            - name: developer-social
-              containerPort: 8001
+            - name: springboot
+              containerPort: 8080
 ---
 # Node Port Service
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: developer-social
-  name: developer-social
+    name: springboot
+  name: springboot
 spec:
   type: NodePort
   ports:
-    - port: 8001
-      targetPort: 8001
+    - port: 8080
+      targetPort: 8080
   selector:
-    name: developer-social
+    name: springboot
 ---
 # Mongo host path rc
 apiVersion: v1
