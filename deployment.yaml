@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicationController
 metadata:
   name: developer-social
 spec:
@@ -32,11 +32,10 @@ spec:
   ports:
     - name: http
       port: 8001
-  selector:
-    app: developer-social
+  type: ClusterIP
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicationController
 metadata:
   name: mongodb
   labels:
