@@ -3,7 +3,7 @@ node {
         git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/Steven8519/developer-social.git', branch: 'master'
     }
     stage("Gradle Build"){
-      sh './gradlew clean build'
+      sh './gradlew clean build -x test'
 
     }
     stage('Build Docker Image'){
