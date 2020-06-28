@@ -1,43 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: developer-social
-spec:
-  selector:
-    matchLabels:
-      app: developer-social
-  replicas: 1
-  template: # template for the pods
-    metadata:
-      labels:
-        app: developer-social
-    spec:
-      containers:
-        - name: devhub
-          image: steven8519/developer-social
-          imagePullPolicy: Always
-          env:
-            - name: MONGODB_HOST
-              value: mongodb
-          ports:
-            - containerPort: 8001
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: developer-social
-  labels:
-    app: developer-social
-spec:
-  ports:
-    - name: http
-      port: 8001
-  selector:
-    app: developer-social
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: mongodb
   labels:
     appdb: mongodb
@@ -69,3 +32,51 @@ spec:
       protocol: TCP
   selector:
     appdb: mongodb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: developers
+  labels:
+    app: developers
+    service: developers
+spec:
+  ports:
+    - port: 8001
+      name: http
+  selector:
+    app: developers
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: developers-hub
+  labels:
+    account: developers
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: developers-v1
+  labels:
+    app: developers
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: developers
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: developers
+        version: v1
+    spec:
+      serviceAccountName: developers-hub
+      containers:
+        - name: developers
+          image: steven8519/developer-social
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8001
