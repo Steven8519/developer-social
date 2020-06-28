@@ -12,7 +12,7 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/api/v1/developers")
 public class DeveloperController {
 
-
-
-
+    public String hello() {
+        return "hello";
+    }
 }
