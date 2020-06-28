@@ -15,7 +15,7 @@ spec:
       containers:
         - name: devhub
           image: steven8519/developer-social
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: MONGODB_HOST
               value: mongodb
