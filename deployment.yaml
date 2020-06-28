@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devhub-social
+  name: developer-social
 spec:
   selector:
     matchLabels:
-      app: devhub-social
+      app: developer-social
   replicas: 1
   template: # template for the pods
     metadata:
       labels:
-        app: devhub-social
+        app: developer-social
     spec:
       containers:
         - name: position-tracker
-          image: steven8519/devhub-social
+          image: steven8519/developer-social
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: production-microservice
@@ -30,7 +30,7 @@ metadata:
   name: developers-devhub-social
 spec:
   selector:
-    app: devhub-social
+    app: developer-social
   ports:
     - name: http
       port: 8001
