@@ -13,16 +13,6 @@ import reactor.core.publisher.Flux;
 public class DeveloperController {
 
 
-    private DeveloperRepository developerRepository;
 
-    @Autowired
-    public DeveloperController(DeveloperRepository developerRepository) {
-        this.developerRepository = developerRepository;
-    }
-
-    @GetMapping
-    public Flux<Developer> getAllDevelopers() {
-       return this.developerRepository.findAll();
-    }
 
 }
