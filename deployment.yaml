@@ -12,7 +12,7 @@ spec:
         name: devhub-social
     spec:
       containers:
-        - image: dockerhandson/spring-boot-mongo
+        - image: steven8519/devhub-social
           name: devhub-social
           ports:
             - name: devhub-social
