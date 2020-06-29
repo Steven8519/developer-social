@@ -24,7 +24,7 @@ spec:
         version: v1
     spec:
       containers:
-        - name: developer-app
+        - name: developers-app
           image: steven8519/developer-social
           imagePullPolicy: IfNotPresent
           env:
