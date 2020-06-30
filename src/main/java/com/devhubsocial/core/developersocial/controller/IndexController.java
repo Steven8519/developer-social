@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexController {
 
-    @GetMapping("/")
+    @GetMapping("/test")
     @ResponseBody
     public String welcome() {
         return "Welcome to Devhub Social";
