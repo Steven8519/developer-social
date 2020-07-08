@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 public class IndexController {
 
 
-    @GetMapping("/test")
+    @GetMapping("/")
     @ResponseBody
     public Flux<String> getRoot() {
         return Flux.just("Welecome to devhub social.");
